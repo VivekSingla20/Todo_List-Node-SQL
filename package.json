@@ -1,0 +1,18 @@
+{
+  "name": "todo_list-node-sql",
+  "version": "1.0.0",
+  "description": "todoList",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mysql2": "^3.7.0",
+    "node-watch": "^0.7.4"
+  },
+  "author": "Vivek Singla",
+  "license": "ISC"
+}
