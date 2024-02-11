@@ -1,4 +1,5 @@
 const pool = require("../dbConfig");
+const {parseDbObject}= require("../utils/function");
 
 const databaseError = {
   success: false,
@@ -18,11 +19,8 @@ const showAllTasks = (req, res) => {
     if (err) res.status(500).json(databaseError);
     else if (result.length === 0) res.status(404).json(errorObject);
     else {
-      for (let i = 0; i < result.length; i++) {
-        if (result[i].isCompleted === 0) result[i].isCompleted = false;
-        else result[i].isCompleted = true;
-      }
-      res.send(result);
+      const updatedResult=parseDbObject(result);
+      res.send(updatedResult);
     }
   });
 };
