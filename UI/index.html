@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <title>Todo List</title>
+    <link rel="stylesheet" href="./index..css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <script src="./index.js"></script>
+    <div class="heading">
+      <div class="todolist">Todo List</div>
+    </div>
+    <div class="boxNbutton">
+      <input type="text" class="taskbox" placeholder="Write here..." id="" />
+      <button class="addButton" onclick="addingTask()">Add Task</button>
+    </div>
+    <table class="taskTable">
+      <thead>
+        <tr>
+          <th>S.no</th>
+          <th>Task</th>
+          <th>Status</th>
+          <th>Created Date & Time</th>
+          <th>Updated Date & Time</th>
+          <th></th>
+        </tr>  
+      </thead>
+      <tbody id="table-list">
+      <tr>
+        <td>1.</td>
+        <td>Task1</td>
+        <td>Not Completed</td>
+        <td>Date</td>
+        <td>Date</td>
+        <td><button>✅</button><button>❌</button></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="tasks"></div>
+  </body>
 </html>

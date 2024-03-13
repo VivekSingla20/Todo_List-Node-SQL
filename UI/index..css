@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background-color: black;
+}
+
+.todolist {
+  font-size: 100px;
+  color: white;
+}
+
+.boxNbutton {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.taskbox {
+  padding-left: 1%;
+  width: 80%;
+  height: 3rem;
+  font-size: 150%;
+}
+
+.addButton {
+  width: 15%;
+  height: 3.1rem;
+  background-color: rgb(55, 55, 255);
+  font-size: 1rem;
+  font-size: 2rem;
+  font-weight: 150;
+  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+.taskTable{
+  background-color: White;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
