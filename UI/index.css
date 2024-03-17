@@ -1,61 +1,36 @@
 * {
-  margin: 0;
-  padding: 0;
-  border: 0;
+  margin: 10px;
 }
 
-body {
-  background-color: black;
-}
-
-.todolist {
-  font-size: 100px;
-  color: white;
-}
-
-.boxNbutton {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.heading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .taskbox {
-  padding-left: 1%;
-  width: 80%;
-  height: 3rem;
-  font-size: 150%;
+  padding: 4px;
+  border: 1px solid black;
+
 }
 
 .addButton {
-  width: 15%;
-  height: 3.1rem;
-  background-color: rgb(55, 55, 255);
-  font-size: 1rem;
-  font-size: 2rem;
-  font-weight: 150;
-  font-family: 'Lato', sans-serif;
-  font-family: 'Poppins', sans-serif;
+  border: 1px solid black;
+  width: 100px;
+  height: 25px;
+  border-radius: 8px;
 }
 
-.taskTable{
-  background-color: White;
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+table {
+  /* background-color: aquamarine; */
+  border: 1px solid black;
+  width: 90vw;
+
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+td,
+th {
+  border: 1px solid black;
+  text-align: center;
+  padding: 4px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+.action-btns{
+  display: inline;
+  cursor: pointer;
 }

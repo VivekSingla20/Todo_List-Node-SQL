@@ -12,16 +12,20 @@ function convertDate(dateString) {
 
 function createActionBtns(id) {
   let tableCell = document.createElement("td");
-  let tickButton = document.createElement("button");
-  let deleteButton = document.createElement("button");
+  let tickButton = document.createElement("div");
+  let deleteButton = document.createElement("div");
+  tickButton.classList.add("action-btns");
+  deleteButton.classList.add("action-btns");
   tickButton.textContent = "✅";
   tickButton.addEventListener("click", () => {
     doneTask(id);
+    // tableCell.parentElement.style.backgroundColor = "green";
   });
   deleteButton.textContent = "❌";
   //TODO: Check with Kritika didi later.
   deleteButton.addEventListener("click", () => {
     deleteTask(id);
+    // tableCell.parentElement.style.backgroundColor = "red";
   });
   tableCell.appendChild(tickButton);
   tableCell.appendChild(deleteButton);
@@ -50,6 +54,7 @@ function displayTodo(list) {
       }
       tableRow.appendChild(tableCell);
     }
+    // if (list[i].isCompleted === true) tableRow.style.backgroundColor = "green";
     tableRow.appendChild(createActionBtns(list[i].id));
     tableBody.appendChild(tableRow);
   }
@@ -66,6 +71,7 @@ const addTask = async () => {
       taskName: input,
     }),
   });
+  document.getElementById("input").value = "";
   if (response.status === 200) showAlltasks();
 };
 
@@ -83,7 +89,7 @@ const doneTask = async (id) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      isCompleted: "true"
+      isCompleted: "true",
     }),
   });
   if (response.status === 200) showAlltasks();
