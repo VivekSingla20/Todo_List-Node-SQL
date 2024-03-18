@@ -1,8 +1,13 @@
+//TODO:Extract Edit Task functionality into a function.
+//TODO:Improve Create action button by making functions.
+
+
 async function showAlltasks() {
   const response = await fetch("http://localhost:3000/tasks");
   const taskList = await response.json();
   displayTodo(taskList);
 }
+
 showAlltasks();
 
 function convertDate(dateString) {
@@ -16,17 +21,15 @@ function createActionBtns(id) {
   let deleteButton = document.createElement("div");
   tickButton.classList.add("action-btns");
   deleteButton.classList.add("action-btns");
-  tickButton.textContent = "✅";
+  tickButton.textContent = "✔";
   tickButton.addEventListener("click", () => {
     doneTask(id);
-    // tableCell.parentElement.style.backgroundColor = "green";
   });
   deleteButton.textContent = "❌";
-  //TODO: Check with Kritika didi later.
   deleteButton.addEventListener("click", () => {
     deleteTask(id);
-    // tableCell.parentElement.style.backgroundColor = "red";
   });
+
   tableCell.appendChild(tickButton);
   tableCell.appendChild(deleteButton);
   return tableCell;
@@ -41,20 +44,31 @@ function displayTodo(list) {
     let td = document.createElement("td");
     td.textContent = i + 1;
     tableRow.appendChild(td);
-    for (let j = 0; j < objectKeys.length; j++) {
+    for (let j = 0; j < objectKeys.length - 1; j++) {
       if (objectKeys[j] === "id") continue;
       let tableCell = document.createElement("td");
-      if (
-        objectKeys[j] === "created_date" ||
-        objectKeys[j] === "updated_date"
-      ) {
+      tableCell.id = list[i].id;
+      if (objectKeys[j] === "created_date") {
         tableCell.textContent = convertDate(list[i][objectKeys[j]]);
+      } else if (objectKeys[j] === "name") {
+        let newTask = document.createElement("input");
+        newTask.value = list[i].name;
+        tableCell.appendChild(newTask);
+        newTask.id = "inputBlur";
+        newTask.addEventListener("blur", (event) => {
+          newTask.id = "inputBlur";
+          if (event.target.value === "") {
+            newTask.value = list[i].name;
+          } else editTask(event.target.value, list[i].id);
+        });
+        newTask.addEventListener("focus", (event) => {
+          newTask.id = "inputFocus";
+        });
       } else {
         tableCell.textContent = list[i][objectKeys[j]];
       }
       tableRow.appendChild(tableCell);
     }
-    // if (list[i].isCompleted === true) tableRow.style.backgroundColor = "green";
     tableRow.appendChild(createActionBtns(list[i].id));
     tableBody.appendChild(tableRow);
   }
@@ -62,16 +76,32 @@ function displayTodo(list) {
 
 const addTask = async () => {
   const input = document.getElementById("input").value;
-  const response = await fetch("http://localhost:3000/tasks", {
-    method: "POST",
+  if (input === "") alert("Enter something...");
+  else {
+    const response = await fetch("http://localhost:3000/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        taskName: input,
+      }),
+    });
+    document.getElementById("input").value = "";
+    if (response.status === 200) showAlltasks();
+  }
+};
+
+const editTask = async (value, id) => {
+  const response = await fetch(`http://localhost:3000/tasks/?id=${id}`, {
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      taskName: input,
+      name: value,
     }),
   });
-  document.getElementById("input").value = "";
   if (response.status === 200) showAlltasks();
 };
 

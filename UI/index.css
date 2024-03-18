@@ -34,3 +34,11 @@ th {
   display: inline;
   cursor: pointer;
 }
+
+#inputFocus{
+  border: 1px solid black;
+  padding: 4px;
+}
+#inputBlur{
+  border: none;
+}
